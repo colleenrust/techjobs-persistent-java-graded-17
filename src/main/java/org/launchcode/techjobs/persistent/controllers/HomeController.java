@@ -64,10 +64,9 @@ public class HomeController {
             Employer employer = optEmployer.get();
             newJob.setEmployer(employer);
         }else {
-            model.addAttribute("employers", employerRepository.findAll());
-            model.addAttribute("skills", skillRepository.findAll());
-            model.addAttribute("error", "Invalid employer selected.");
-            return "add";
+            Employer newEmployer = new Employer();
+
+            newJob.setEmployer(new Employer());
         }
 
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
