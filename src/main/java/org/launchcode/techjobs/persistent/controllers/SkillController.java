@@ -21,7 +21,7 @@ public class SkillController {
     private SkillRepository skillRepository;
 
     //method to display all skills
-    @GetMapping
+    @GetMapping("/")
     public String index(Model model){
         model.addAttribute("skills", skillRepository.findAll());
         return "skills/index";
@@ -36,10 +36,11 @@ public class SkillController {
     @PostMapping("add")
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
                                          Errors errors, Model model) {
-        skillRepository.save(newSkill); // save to repo
+
         if (errors.hasErrors()) {
             return "skills/add";
         }
+        skillRepository.save(newSkill); // save to repo
 
         return "redirect:";
     }
@@ -58,4 +59,5 @@ public class SkillController {
         }
 
     }
+
 }
